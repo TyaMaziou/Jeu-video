@@ -1,74 +1,76 @@
-
-using System.Collections;
 using UnityEngine;
 
-public class StalactiteSpawner : MonoBehaviour
+public class FallingStalactite : MonoBehaviour
 {
-    [SerializeField] private GameObject stalactitePrefab; // Préfabriqué de la stalactite à instancier
-    [SerializeField] private float spawnInterval = 2f; // Intervalle entre chaque apparition de stalactite
-    [SerializeField] private float fallSpeed = 5f; // Vitesse de chute de la stalactite
-    [SerializeField] private float disappearY = 0f; // Position Y où la stalactite disparaît
-    [SerializeField] private float rotateDelay = 1f; // Délai avant rotation (en secondes)
+    [SerializeField] private float initialDelay = 0f;
+    // Position initiale de la stalactite
+    public Vector2 initialPosition = new Vector2(0f, 10f);
 
-    private bool isRotating = false; // Indique si une stalactite est en train de pivoter
+    // Position finale de la stalactite
+    public Vector2 finalPosition = new Vector2(0f, 0f);
 
-    private void Start()
+    // Vitesse de chute de la stalactite
+    public float fallSpeed = 5f;
+
+    //Vitesse de repop
+    public float fallPause = 2f;
+
+    // Booléen pour vérifier si la stalactite est en train de tomber ou de remonter
+    private bool isFalling = true;
+    private float timerFallPause = 0;
+    private float delayTimer = 0;
+
+    void Start()
     {
-        StartCoroutine(SpawnStalactites());
+        // Positionner la stalactite à sa position initiale au début
+        transform.position = initialPosition;
+        delayTimer = initialDelay;
     }
 
-    private IEnumerator SpawnStalactites()
+    void Update()
     {
-        while (true)
+        // Si la stalactite est en train de tomber
+        if (isFalling)
         {
-            // Instancier une nouvelle stalactite
-            GameObject newStalactite = Instantiate(stalactitePrefab, transform.position, Quaternion.identity);
+            // Si le délai initial n'a pas encore expiré
+            if (delayTimer > 0)
+            {
+                delayTimer -= Time.deltaTime;
+                // Ne rien faire tant que le délai n'a pas expiré
+                return;
+            }
+            
+            // Calculer la direction vers la position finale ou initiale en fonction de l'état actuel
+            Vector2 direction = isFalling ? (finalPosition - (Vector2)transform.position).normalized : (initialPosition - (Vector2)transform.position).normalized;
 
-            // Attendre avant d'instancier la prochaine stalactite
-            yield return new WaitForSeconds(spawnInterval);
-        }
-    }
-}
+            // Déplacer la stalactite vers sa position finale ou initiale à une vitesse constante
+            transform.Translate(direction * fallSpeed * Time.deltaTime);
 
-public class StalactiteFall : MonoBehaviour
-{
-    [SerializeField] private float fallSpeed = 5f; // Vitesse de chute de la stalactite
-    [SerializeField] private float disappearY = 0f; // Position Y où la stalactite disparaît
-    [SerializeField] private float rotateDelay = 1f; // Délai avant rotation (en secondes)
-
-    private bool isFalling = false; // Indique si la stalactite est en train de tomber
-    private bool isRotating = false; // Indique si la stalactite est en train de pivoter
-
-    private void Update()
-    {
-        if (!isFalling)
+            // Vérifier si la distance restante est inférieure à la distance de déplacement par frame
+            if ((isFalling && Vector2.Distance(transform.position, finalPosition) < fallSpeed * Time.deltaTime) ||
+                (!isFalling && Vector2.Distance(transform.position, initialPosition) < fallSpeed * Time.deltaTime))
+            {
+                // La stalactite a atteint sa position finale ou initiale, inverser la direction
+                transform.position = isFalling ? finalPosition : initialPosition;
+                isFalling = !isFalling;
+                timerFallPause = fallPause;
+            }
+        } 
+        // Si la stalactite est en train de remonter
+        else if (timerFallPause > 0)
         {
-            StartCoroutine(FallCoroutine());
+            // Réduire le temps de pause
+            timerFallPause -= Time.deltaTime;
+
+            // Si le temps de pause est écoulé
+            if (timerFallPause <= 0)
+            {
+                // Réinitialiser la position et passer en mode de chute
+                timerFallPause = 0;
+                transform.position = initialPosition;
+                isFalling = true;
+                delayTimer = initialDelay; // Réinitialiser le délai pour le prochain cycle
+            }
         }
-
-        if (isRotating)
-        {
-            // Rotation de 90 degrés autour de l'axe Z
-            transform.Rotate(0f, 0f, 90f * Time.deltaTime);
-        }
-    }
-
-    private IEnumerator FallCoroutine()
-    {
-        isFalling = true;
-        while (transform.position.y > disappearY)
-        {
-            // Déplacement de la stalactite vers le bas
-            transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        // Stalactite atteint la position Y de disparition, la désactiver
-        gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(rotateDelay);
-
-        // Commencer la rotation
-        isRotating = true;
     }
 }
