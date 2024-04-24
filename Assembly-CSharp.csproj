@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Core\Teleport.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerManager.cs" />
+    <Compile Include="Assets\horizontalmove.cs" />
     <Compile Include="Assets\Scripts\Core\Impact.cs" />
     <Compile Include="Assets\Scripts\ObstacleBehaviours\RedWall.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerManagerAnimated.cs" />
