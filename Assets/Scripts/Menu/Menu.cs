@@ -98,12 +98,30 @@ public class Menu : MonoBehaviour
 	/*** FONCTIONS A ASSOCIER AU CLIC D'UN BOUTON DU MENU ***/
 	
 	//Fonction qui lance le jeu
+
 	public void PlayGame()
-	{
-		//Mettre entre guillemets le nom de la scène vers laquelle charger
-		//Pour utiliser SceneManager, il faut impérativement rajouter "using UnityEngine.SceneManagement;" en haut du script.
-		SceneManager.LoadScene("SceneToEditCamille");
-	}
+{
+    // Charger la scène du jeu
+    SceneManager.LoadScene("SceneToEditCamille");
+
+    // Vérifier si la cinématique INTRO1 DEBUT existe dans la scène
+    if (SceneManager.GetSceneByName("SceneToEditCamille").isLoaded) // Assurez-vous de remplacer "SceneToEditCamille" par le nom correct de votre scène
+    {
+        // Rechercher l'objet représentant la cinématique INTRO1 DEBUT dans la scène
+        GameObject introCinematic = GameObject.Find("INTRO2 DEBUT"); // Assurez-vous que cet objet est correctement nommé dans votre scène
+
+        // Vérifier si l'objet de la cinématique existe
+        if (introCinematic != null)
+        {
+            // Activer la cinématique
+            introCinematic.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("La cinématique INTRO1 DEBUT n'a pas été trouvée dans la scène.");
+        }
+    }
+}
 
 	//Fonction qui affiche la première image des règles
 	public void ReadRules()
