@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\ObstacleBehaviours\VerticalMove.cs" />
     <Compile Include="Assets\licorne.cs" />
     <Compile Include="Assets\Scripts\Core\TableauManager.cs" />
+    <Compile Include="Assets\retour.cs" />
     <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Core\Teleport.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerManager.cs" />
