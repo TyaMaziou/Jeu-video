@@ -22,7 +22,7 @@ public class Impact : MonoBehaviour
             }
 
             //On change la position du joueur et on le téléporte aux coordonnées spécifiées
-            col.gameObject.transform.position = new Vector2(-7.5f, 0f);
+            col.gameObject.transform.position = new Vector2(-7.2f, 0f);
 
             //On augmente de 1 le compteur de morts
             col.gameObject.GetComponent<PlayerManager>().AddDeath(); //On récupère le PlayerManager du joueur pour ajouter la mort

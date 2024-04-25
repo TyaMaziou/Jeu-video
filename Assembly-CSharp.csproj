@@ -81,16 +81,16 @@
     <Compile Include="Assets\Scripts\ObstacleBehaviours\FollowingPlayerMove.cs" />
     <Compile Include="Assets\Scripts\ObstacleBehaviours\VerticalMoveLoop.cs" />
     <Compile Include="Assets\Scripts\ObstacleBehaviours\Rotation.cs" />
-    <Compile Include="Assets\Scripts\ObstacleBehaviours\VerticalMoveLoopInit.cs" />
     <Compile Include="Assets\BOULE DE FEUUUUU\TEST BOULE DE FEU1.cs" />
+    <Compile Include="Assets\Scripts\ObstacleBehaviours\VerticalMoveLoopInit.cs" />
     <Compile Include="Assets\Scripts\Core\TableauReinit.cs" />
     <Compile Include="Assets\Scripts\Core\FinishLine.cs" />
     <Compile Include="Assets\BOULE DE FEUUUUU\Weapon.cs" />
     <Compile Include="Assets\Scripts\ObstacleBehaviours\BoundMove.cs" />
     <Compile Include="Assets\Scripts\Menu\Menu.cs" />
     <Compile Include="Assets\chute.cs" />
-    <Compile Include="Assets\BOULE DE FEUUUUU\TEST DRAGON CRACHE.cs" />
     <Compile Include="Assets\ImpactBat.cs" />
+    <Compile Include="Assets\BOULE DE FEUUUUU\TEST DRAGON CRACHE.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
