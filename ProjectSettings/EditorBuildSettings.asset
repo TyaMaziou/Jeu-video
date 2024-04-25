@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AnimatedSpritesTest.unity
     guid: cce1e654cbe2e7a41922c22cf075c342
+  - enabled: 1
+    path: Assets/Scenes/OUTRO 1 FIN.unity
+    guid: 2cbf865e30cc77f42a3ec4533dd6fc04
   m_configObjects: {}

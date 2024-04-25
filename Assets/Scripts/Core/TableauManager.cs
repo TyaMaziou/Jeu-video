@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TableauManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TableauManager : MonoBehaviour
 
 	public static int maxHeight = 6; //hauteur des niveaux
 	public static int maxWidth = 12; //largeur des niveaux
+	
 
 	[SerializeField] static GameObject[] tableaux; //Contient l'ensemble des tableaux de la scène
 	
@@ -36,6 +38,7 @@ public class TableauManager : MonoBehaviour
 		for (int i = 0; i < children; ++i){
 			tableaux[i] = transform.GetChild(i).gameObject;
 			
+			/*
 			//On fait en sorte que le téléporteur gauche du niveau redirige vers le niveau précédent (ne marche pas si une salle a plusieurs téléporteurs)
 			GameObject teleporterLeft = tableaux[i].GetComponent<Tableau>().GetTeleporterLeft();
 			if(teleporterLeft != null){
@@ -48,6 +51,7 @@ public class TableauManager : MonoBehaviour
 				teleporterRight.GetComponent<Teleport>().SetNumTableau(i+1);
 				teleporterRight.GetComponent<Teleport>().SetPosition(-7.5f,0);
 			}
+			*/
 			
 			//Met tous les tableaux désactivés
 			tableaux[i].SetActive(false);
@@ -58,6 +62,16 @@ public class TableauManager : MonoBehaviour
 
 	//Fonction qui active le tableau d'indice index, active l'ancien tableau actuel, et met à jour la variable activeTableau
 	public static void ShowTableau(int index){
+		if(index == 5){
+			Debug.Log("end");
+			SceneManager.LoadScene("OUTRO 1 FIN");
+
+		}
+		
+		
+		
+
+
 		tableaux[index].SetActive(true);
 		tableaux[activeTableau].SetActive(false);
 		activeTableau = index;

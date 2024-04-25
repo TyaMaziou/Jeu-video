@@ -8,6 +8,7 @@ public class Teleport : MonoBehaviour
 	public float y; //Rentrer ici la coordonnée y où vous souhaitez téléporter le joueur
 	public int numTableau; //Rentrer ici l'indice du tableau que vous voulez désormais afficher
 	
+	
 	public void SetPosition(float _x, float _y){
 		x = _x;
 		y = _y;
@@ -30,4 +31,5 @@ public class Teleport : MonoBehaviour
 			TableauManager.UpdateCheckpointPosition(x,y);
         }
     }
+
 }
