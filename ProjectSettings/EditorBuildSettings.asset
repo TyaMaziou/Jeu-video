@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OUTRO 1 FIN.unity
     guid: 2cbf865e30cc77f42a3ec4533dd6fc04
+  - enabled: 1
+    path: Assets/Scenes/INTRO1 DEBUT.unity
+    guid: 606017e8231588049a84c7b18270bcfa
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: 44e99427f976b9d4eaea8344c90493f4
+  - enabled: 1
+    path: Assets/Scenes/INTRO2 DEBUT.unity
+    guid: 244e77f9ee74d5c439b4931fb335ad33
   m_configObjects: {}
