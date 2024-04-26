@@ -64,7 +64,7 @@ public class TableauManager : MonoBehaviour
 	public static void ShowTableau(int index){
 		if(index == 5){
 			Debug.Log("end");
-			SceneManager.LoadScene("OUTRO 1 FIN");
+			SceneManager.LoadScene("TitleMenu");
 
 		}
 		
